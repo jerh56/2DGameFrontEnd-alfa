@@ -10,7 +10,7 @@ public class ButonHandler : MonoBehaviour
         Text txt = transform.Find("Text (Legacy)").GetComponent<Text>();
         txt.text = text;
 
-        const string URL = "https://jsonplaceholder.typicode.com/todos/1";
+        const string URL = "https://dev-simplesales-backend.herokuapp.com/api/articulos-color/";
         Text txtReturn = transform.Find("ReturnText").GetComponent<Text>();
         //txtReturn.text = text;
         StartCoroutine(ProcessRequest(URL, txtReturn));
@@ -20,6 +20,7 @@ public class ButonHandler : MonoBehaviour
     {
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
+            request.SetRequestHeader("Authorization", "Token 07d1107de8e2977b035f6723da8a5240d25bf15a");
             yield return request.SendWebRequest();
             Debug.Log(request.result);
             if (request.result ==  UnityWebRequest.Result.ConnectionError)
