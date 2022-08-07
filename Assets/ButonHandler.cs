@@ -16,6 +16,26 @@ public class ButonHandler : MonoBehaviour
         StartCoroutine(ProcessRequest(URL, txtReturn));
     }
 
+    public void ButtonAPressed(){
+        Debug.Log("El Botón A ha sido presionado");
+    }
+
+    public void ButtonBPressed(){
+        Debug.Log("El Botón B ha sido presionado");
+    }
+
+    public void ButtonCPressed(){
+        Debug.Log("El Botón C ha sido presionado");
+    }
+
+    public void ButtonDPressed(){
+        Debug.Log("El Botón D ha sido presionado");
+    }
+
+    public void ButtonEPressed(){
+        Debug.Log("El Botón E ha sido presionado");
+    }
+
     private IEnumerator ProcessRequest(string uri, Text txtReturn)
     {
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
