@@ -18,22 +18,32 @@ public class ButonHandler : MonoBehaviour
 
     public void ButtonAPressed(){
         Debug.Log("El Botón A ha sido presionado");
+        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
+        txtReturn.text = "El Botón A ha sido presionado";
     }
 
     public void ButtonBPressed(){
         Debug.Log("El Botón B ha sido presionado");
+        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
+        txtReturn.text = "El Botón B ha sido presionado";
     }
 
     public void ButtonCPressed(){
         Debug.Log("El Botón C ha sido presionado");
+        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
+        txtReturn.text = "El Botón C ha sido presionado";
     }
 
     public void ButtonDPressed(){
         Debug.Log("El Botón D ha sido presionado");
+        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
+        txtReturn.text = "El Botón D ha sido presionado";
     }
 
     public void ButtonEPressed(){
         Debug.Log("El Botón E ha sido presionado");
+        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
+        txtReturn.text = "El Botón E ha sido presionado";
     }
 
     private IEnumerator ProcessRequest(string uri, Text txtReturn)
