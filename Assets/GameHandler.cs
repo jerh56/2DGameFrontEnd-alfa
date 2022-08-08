@@ -10,6 +10,7 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         const string URL = "https://game2dbackend-alfa.herokuapp.com/test-phrase";
+        Screen.fullScreen = !Screen.fullScreen;
         Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
         //txtReturn.text = text;
         StartCoroutine(ProcessRequest(URL, txtPhraseText));
@@ -17,6 +18,8 @@ public class GameHandler : MonoBehaviour
 
     private IEnumerator ProcessRequest(string uri, Text txtPhraseText)
     {
+        string textPhrase = "";
+        string textPhraseHide = "";
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
             yield return request.SendWebRequest();
@@ -27,8 +30,24 @@ public class GameHandler : MonoBehaviour
             }
             else
             {
+                //Debug.Log(request.downloadHandler.text);
+                //txtPhraseText.text = request.downloadHandler.text;
                 Debug.Log(request.downloadHandler.text);
-                txtPhraseText.text = request.downloadHandler.text;
+                textPhrase = request.downloadHandler.text;
+                foreach(char c in textPhrase)
+                    {
+                        Debug.Log(c);
+                        if (c != ' '){
+                            textPhraseHide = textPhraseHide + "_";
+                        }
+                        else{
+                            textPhraseHide = textPhraseHide + " ";
+                        }
+                    }
+
+                txtPhraseText.text = textPhraseHide;
+                Text txtPhraseHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
+                txtPhraseHide.text = textPhrase;
             }
         }
     }
