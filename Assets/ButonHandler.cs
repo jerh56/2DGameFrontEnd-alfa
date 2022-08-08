@@ -16,46 +16,22 @@ public class ButonHandler : MonoBehaviour
         StartCoroutine(ProcessRequest(URL, txtReturn));
     }
 
-    public void ButtonAPressed(){
-        Debug.Log("El Botón A ha sido presionado");
-        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        txtReturn.text = "El Botón A ha sido presionado";
-    }
-
-    public void ButtonBPressed(){
-        Debug.Log("El Botón B ha sido presionado");
-        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        txtReturn.text = "El Botón B ha sido presionado";
-    }
-
-    public void ButtonCPressed(){
-        Debug.Log("El Botón C ha sido presionado");
-        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        txtReturn.text = "El Botón C ha sido presionado";
-    }
-
-    public void ButtonDPressed(){
-        Debug.Log("El Botón D ha sido presionado");
-        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        txtReturn.text = "El Botón D ha sido presionado";
-    }
-
-    public void ButtonEPressed(){
-        Debug.Log("El Botón E ha sido presionado");
-        Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        txtReturn.text = "El Botón E ha sido presionado";
-    }
-
     public void ButtonPressed(){
         Debug.Log("El Botón "  + this.name + " ha sido presionado");
         Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
         Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
+        Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
+
         txtReturn.text = "El Botón "  + this.name + " ha sido presionado";
         string ButtonName = this.name.Substring(this.name.Length - 1,1);
         string txtPhraseResult = "";
+        int attempts = -1;
+        int.TryParse(txtAttempts.text, out attempts);
+        attempts++;
+        Debug.Log(attempts);
         Debug.Log(ButtonName);
- 
+        txtAttempts.text = attempts.ToString();
         char ButtonNameChar = ButtonName[0];
         //ButtonName = ButtonName.
 
