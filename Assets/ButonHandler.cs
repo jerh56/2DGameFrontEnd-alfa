@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class ButonHandler : MonoBehaviour
 {
 
-    private int numFailAttemps = 0;
+    //private int numFailAttemps = 0;
 
     public void SetText(string text){
         Text txt = transform.Find("Text (Legacy)").GetComponent<Text>();
@@ -75,12 +75,12 @@ public class ButonHandler : MonoBehaviour
         }
 
         if (optFoundIt == false) {
-            this.numFailAttemps++;
+            GameHandler.numFailAttemps++;
         }
         //Debug.Log(PhraseTextResult);
         txtPhraseText.text = txtPhraseResult;
 
-        Debug.Log("Intentos fallidos : " + this.numFailAttemps.ToString());
+        Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
 
 
     }

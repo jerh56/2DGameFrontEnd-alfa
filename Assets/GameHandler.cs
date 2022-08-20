@@ -6,9 +6,15 @@ using UnityEngine.Networking;
 
 public class GameHandler : MonoBehaviour
 {
+
+    public static int numFailAttemps;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        numFailAttemps = 0;
+        
         const string URL = "https://game2dbackend-alfa.herokuapp.com/test-phrase";
         Screen.fullScreen = !Screen.fullScreen;
         Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
