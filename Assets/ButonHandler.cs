@@ -27,6 +27,7 @@ public class ButonHandler : MonoBehaviour
         Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
         Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
+        Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
 
         bool optFoundIt = false;
 
@@ -81,6 +82,7 @@ public class ButonHandler : MonoBehaviour
         txtPhraseText.text = txtPhraseResult;
 
         Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
+        txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
 
     }
