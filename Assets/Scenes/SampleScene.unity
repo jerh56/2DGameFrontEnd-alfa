@@ -3194,7 +3194,7 @@ GameObject:
   - component: {fileID: 665902155}
   m_Layer: 5
   m_Name: txt-fail-attemps
-  m_TagString: txt-fail-attemps
+  m_TagString: txt-fail-attempts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7052,7 +7052,7 @@ GameObject:
   - component: {fileID: 1991094658}
   - component: {fileID: 1991094657}
   m_Layer: 5
-  m_Name: lbl-fail-attemps
+  m_Name: lbl-fail-attempts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,7 +8,7 @@ TagManager:
   - PhraseText
   - PhraseTextHide
   - txt-attempts
-  - txt-fail-attemps
+  - txt-fail-attempts
   layers:
   - Default
   - TransparentFX
