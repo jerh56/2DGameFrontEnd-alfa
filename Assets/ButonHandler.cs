@@ -6,9 +6,14 @@ using UnityEngine.Networking;
 
 public class ButonHandler : MonoBehaviour
 {
+
+    //private int numFailAttemps = 0;
+
     public void SetText(string text){
         Text txt = transform.Find("Text (Legacy)").GetComponent<Text>();
         txt.text = text;
+
+        //numFailAttemps = 0;
 
         const string URL = "https://dev-simplesales-backend.herokuapp.com/api/articulos-color/";
         Text txtReturn = transform.Find("ReturnText").GetComponent<Text>();
@@ -22,6 +27,9 @@ public class ButonHandler : MonoBehaviour
         Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
         Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
+        Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
+
+        bool optFoundIt = false;
 
         txtReturn.text = "El Botón "  + this.name + " ha sido presionado";
         string ButtonName = this.name.Substring(this.name.Length - 1,1);
@@ -44,6 +52,7 @@ public class ButonHandler : MonoBehaviour
                 //Debug.Log(PhraseText[i]);
                 txtPhraseResult += PhraseText[i];
                 //PhraseTextResult[i] = PhraseText[i];
+                optFoundIt = true;
            }
            else{
               //Debug.Log(PhraseText[i]);
@@ -62,10 +71,18 @@ public class ButonHandler : MonoBehaviour
                 else{
                     txtPhraseResult += " ";
                 }*/
+
            }
+        }
+
+        if (optFoundIt == false) {
+            GameHandler.numFailAttemps++;
         }
         //Debug.Log(PhraseTextResult);
         txtPhraseText.text = txtPhraseResult;
+
+        Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
+        txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
 
     }
