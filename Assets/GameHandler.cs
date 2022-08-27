@@ -9,13 +9,19 @@ public class GameHandler : MonoBehaviour
 
     public static int numFailAttemps;
 
+    [System.Serializable]
+    public class MyPhrase
+    {
+        public string phrase;
+        public string type;
+    }
     // Start is called before the first frame update
     void Start()
     {
 
         numFailAttemps = 0;
         
-        const string URL = "https://game2dbackend-alfa.herokuapp.com/test-phrase";
+        const string URL = "https://game2dbackend-alfa.herokuapp.com/phrase";
         Screen.fullScreen = !Screen.fullScreen;
         Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
         //txtReturn.text = text;
@@ -39,7 +45,12 @@ public class GameHandler : MonoBehaviour
                 //Debug.Log(request.downloadHandler.text);
                 //txtPhraseText.text = request.downloadHandler.text;
                 Debug.Log(request.downloadHandler.text);
-                textPhrase = request.downloadHandler.text;
+                MyPhrase myPhrase = new MyPhrase();
+
+                myPhrase = JsonUtility.FromJson<MyPhrase>(request.downloadHandler.text);
+                Debug.Log(myPhrase);
+
+                textPhrase = myPhrase.phrase;
                 foreach(char c in textPhrase)
                     {
                         Debug.Log(c);
