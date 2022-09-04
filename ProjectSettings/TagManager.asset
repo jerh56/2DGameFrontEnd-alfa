@@ -9,6 +9,8 @@ TagManager:
   - PhraseTextHide
   - txt-attempts
   - txt-fail-attempts
+  - Canvas
+  - DialogBoxGameOver
   layers:
   - Default
   - TransparentFX

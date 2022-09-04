@@ -20,7 +20,9 @@ public class GameHandler : MonoBehaviour
     {
 
         numFailAttemps = 0;
-        
+        numAllowFailAttemps = 3;
+        GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
+        DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(false);
         const string URL = "https://game2dbackend-alfa.herokuapp.com/phrase";
         Screen.fullScreen = !Screen.fullScreen;
         Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
