@@ -8,6 +8,7 @@ public class GameHandler : MonoBehaviour
 {
 
     public static int numFailAttemps;
+    public static int numAllowFailAttemps;
 
     [System.Serializable]
     public class MyPhrase
