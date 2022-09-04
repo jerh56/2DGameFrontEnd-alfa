@@ -8,7 +8,6 @@ public class GameHandler : MonoBehaviour
 {
 
     public static int numFailAttemps;
-    public static int numAllowFailAttemps;
 
     [System.Serializable]
     public class MyPhrase
@@ -21,7 +20,6 @@ public class GameHandler : MonoBehaviour
     {
 
         numFailAttemps = 0;
-        numAllowFailAttemps = 3;
         
         const string URL = "https://game2dbackend-alfa.herokuapp.com/phrase";
         Screen.fullScreen = !Screen.fullScreen;

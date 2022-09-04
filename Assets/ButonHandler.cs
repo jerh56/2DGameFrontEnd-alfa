@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using UnityEditor;
-
 
 public class ButonHandler : MonoBehaviour
 {
@@ -86,14 +84,6 @@ public class ButonHandler : MonoBehaviour
         Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
-        if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
-            EditorUtility.DisplayDialog("Game over.", "Haz alcanzado el limite de intentos fallidos.","Aceptar");
-            
-            //Reiniciar el juego
-            Application.LoadLevel(0); //Obsoleto
-            //SceneManager.LoadScene(0);
-        }
-
 
     }
 
@@ -128,10 +118,5 @@ public class ButonHandler : MonoBehaviour
                 txtReturn.text = textPhraseHide;
             }
         }
-    }
-
-    void ApplyDamage(float damage)
-    {
-        print(damage);
     }
 }
