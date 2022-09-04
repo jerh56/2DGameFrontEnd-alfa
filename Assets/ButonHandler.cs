@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using UnityEditor;
-
 
 
 public class ButonHandler : MonoBehaviour
@@ -89,12 +87,10 @@ public class ButonHandler : MonoBehaviour
         Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
-
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
              GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
              DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(true);
         }
-
 
     }
 
@@ -131,7 +127,7 @@ public class ButonHandler : MonoBehaviour
         }
     }
 
-    void ApplyDamage(float damage)
+  void ApplyDamage(float damage)
     {
         print(damage);
     }
