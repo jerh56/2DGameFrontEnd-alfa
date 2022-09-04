@@ -6,11 +6,13 @@ using UnityEngine.Networking;
 using UnityEditor;
 
 
+
 public class ButonHandler : MonoBehaviour
 {
 
     //private int numFailAttemps = 0;
-
+    public AudioSource fuente;
+    public AudioClip clip;
     public void SetText(string text){
         Text txt = transform.Find("Text (Legacy)").GetComponent<Text>();
         txt.text = text;
@@ -24,6 +26,7 @@ public class ButonHandler : MonoBehaviour
     }
 
     public void ButtonPressed(){
+        fuente = GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>();
         Debug.Log("El Botón "  + this.name + " ha sido presionado");
         Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
         Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
@@ -32,7 +35,7 @@ public class ButonHandler : MonoBehaviour
         Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
 
         bool optFoundIt = false;
-
+        PlaySound();
         txtReturn.text = "El Botón "  + this.name + " ha sido presionado";
         string ButtonName = this.name.Substring(this.name.Length - 1,1);
         string txtPhraseResult = "";
@@ -86,12 +89,10 @@ public class ButonHandler : MonoBehaviour
         Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
+
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
-            EditorUtility.DisplayDialog("Game over.", "Haz alcanzado el limite de intentos fallidos.","Aceptar");
-            
-            //Reiniciar el juego
-            Application.LoadLevel(0); //Obsoleto
-            //SceneManager.LoadScene(0);
+             GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
+             DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(true);
         }
 
 
@@ -133,5 +134,24 @@ public class ButonHandler : MonoBehaviour
     void ApplyDamage(float damage)
     {
         print(damage);
+    }
+
+    public void PlaySound(){
+        try
+        {
+            fuente.Play();
+            Debug.Log("Play Sound");
+
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+    }
+
+    public void Restart(){
+        //Reiniciar el juego
+        Application.LoadLevel(0); //Obsoleto
+        //SceneManager.LoadScene(0);
     }
 }
