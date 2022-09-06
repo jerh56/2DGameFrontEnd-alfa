@@ -31,25 +31,26 @@ public class ButonHandler : MonoBehaviour
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
         Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
         Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
-
+        Button btnButton = this.GetComponent<Button>();
         bool optFoundIt = false;
         PlaySound();
+        btnButton.gameObject.SetActive(false);
         txtReturn.text = "El Botón "  + this.name + " ha sido presionado";
         string ButtonName = this.name.Substring(this.name.Length - 1,1);
         string txtPhraseResult = "";
         int attempts = -1;
         int.TryParse(txtAttempts.text, out attempts);
         attempts++;
-        Debug.Log(attempts);
-        Debug.Log(ButtonName);
+        //Debug.Log(attempts);
+        //Debug.Log(ButtonName);
         txtAttempts.text = attempts.ToString();
         char ButtonNameChar = ButtonName[0];
         //ButtonName = ButtonName.
 
         string PhraseText = txtPhraseTextHide.text;
         string PhraseTextResult = txtPhraseText.text;
-        Debug.Log(PhraseText);
-        Debug.Log(PhraseTextResult);
+        //Debug.Log(PhraseText);
+        //Debug.Log(PhraseTextResult);
         for (int i = 0; i < PhraseText.Length; i ++){
            if (PhraseText[i].Equals(ButtonNameChar)){
                 //Debug.Log(PhraseText[i]);
@@ -88,8 +89,10 @@ public class ButonHandler : MonoBehaviour
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
-             GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
-             DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(true);
+            GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
+            //GameObject PanelGameOver = GameObject.FindGameObjectWithTag("PanelGameOver");
+            DialogContainer.transform.Find("PanelGameOver").gameObject.SetActive(true);
+            DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(true);
         }
 
     }
