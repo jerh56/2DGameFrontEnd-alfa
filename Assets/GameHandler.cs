@@ -25,7 +25,7 @@ public class GameHandler : MonoBehaviour
         GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
         DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(false);
         const string URL = "https://game2dbackend-alfa.herokuapp.com/phrase";
-        Screen.fullScreen = !Screen.fullScreen;
+        // Screen.fullScreen = !Screen.fullScreen;
         Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
         //txtReturn.text = text;
         StartCoroutine(ProcessRequest(URL, txtPhraseText));
@@ -47,16 +47,16 @@ public class GameHandler : MonoBehaviour
             {
                 //Debug.Log(request.downloadHandler.text);
                 //txtPhraseText.text = request.downloadHandler.text;
-                Debug.Log(request.downloadHandler.text);
+                //Debug.Log(request.downloadHandler.text);
                 MyPhrase myPhrase = new MyPhrase();
 
                 myPhrase = JsonUtility.FromJson<MyPhrase>(request.downloadHandler.text);
-                Debug.Log(myPhrase);
+                // Debug.Log(myPhrase);
 
                 textPhrase = myPhrase.phrase;
                 foreach(char c in textPhrase)
                     {
-                        Debug.Log(c);
+                        // Debug.Log(c);
                         if (c != ' '){
                             textPhraseHide = textPhraseHide + "_";
                         }
@@ -68,6 +68,8 @@ public class GameHandler : MonoBehaviour
                 txtPhraseText.text = textPhraseHide;
                 Text txtPhraseHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
                 txtPhraseHide.text = textPhrase;
+                GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
+                DialogContainer.transform.Find("PanelGameOver").gameObject.SetActive(false);
             }
         }
     }

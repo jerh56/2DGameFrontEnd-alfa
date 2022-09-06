@@ -11,6 +11,7 @@ TagManager:
   - txt-fail-attempts
   - Canvas
   - DialogBoxGameOver
+  - PanelGameOver
   layers:
   - Default
   - TransparentFX
