@@ -49,32 +49,22 @@ public class ButonHandler : MonoBehaviour
 
         string PhraseText = txtPhraseTextHide.text;
         string PhraseTextResult = txtPhraseText.text;
-        //Debug.Log(PhraseText);
-        //Debug.Log(PhraseTextResult);
+        
         for (int i = 0; i < PhraseText.Length; i ++){
-           if (PhraseText[i].Equals(ButtonNameChar)){
-                //Debug.Log(PhraseText[i]);
+            if (PhraseText[i].Equals(ButtonNameChar)){
                 txtPhraseResult += PhraseText[i];
-                //PhraseTextResult[i] = PhraseText[i];
                 optFoundIt = true;
-           }
-           else{
-              //Debug.Log(PhraseText[i]);
-               // Debug.Log("_");
-               if (PhraseTextResult[i] != '_'){
+            }
+            else{
+              
+                if (PhraseTextResult[i] != '_'){
                     //PhraseTextResult[i] = PhraseText[i];
                     txtPhraseResult += PhraseTextResult[i];
-               }
-               else{
-                    txtPhraseResult += "_";
-               }
-                /*if (PhraseText[i] != ' '){
-                    txtPhraseResult += "_";
-                    PhraseTextResult[i] = PhraseText[i];
                 }
                 else{
-                    txtPhraseResult += " ";
-                }*/
+                    txtPhraseResult += "_";
+                }
+                
 
            }
         }
@@ -82,10 +72,9 @@ public class ButonHandler : MonoBehaviour
         if (optFoundIt == false) {
             GameHandler.numFailAttemps++;
         }
-        //Debug.Log(PhraseTextResult);
+        
         txtPhraseText.text = txtPhraseResult;
 
-        Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
@@ -103,7 +92,6 @@ public class ButonHandler : MonoBehaviour
         string textPhraseHide = "";
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
-            //request.SetRequestHeader("Authorization", "Token 07d1107de8e2977b035f6723da8a5240d25bf15a");
             yield return request.SendWebRequest();
             Debug.Log(request.result);
             if (request.result ==  UnityWebRequest.Result.ConnectionError)
