@@ -9,6 +9,10 @@ public class GameHandler : MonoBehaviour
 
     public static int numFailAttemps;
     public static int numAllowFailAttemps;
+    public Renderer fondo;
+
+    private float positionX = 0f;
+    private float positionY = 0.030f;
 
     [System.Serializable]
     public class MyPhrase
@@ -77,6 +81,6 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        fondo.material.mainTextureOffset = fondo.material.mainTextureOffset + new UnityEngine.Vector2(positionX, positionY) * Time.deltaTime;
     }
 }
