@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
 
     public static int numFailAttemps;
     public static int numAllowFailAttemps;
+    
+    public Renderer fondo;
+    public GameObject winner;
+    public string escenaActual;
+    public static bool isWinner = false;
+
+    private float positionX = 0f;
+    private float positionY = 0.030f;
 
     [System.Serializable]
     public class MyPhrase
@@ -19,7 +28,9 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        winner.SetActive(false);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        escenaActual = SceneManager.GetActiveScene().name;
         numFailAttemps = 0;
         numAllowFailAttemps = 3;
         GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
@@ -74,6 +85,18 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isWinner && Input.anyKey)
+        {
+            SceneManager.LoadScene(escenaActual);
+            isWinner = false;
+            winner.SetActive(false);
+        }
+
+        if (isWinner)
+        {
+            winner.SetActive(true);
+        }
+
+        fondo.material.mainTextureOffset = fondo.material.mainTextureOffset + new UnityEngine.Vector2(positionX, positionY) * Time.deltaTime;
     }
 }
