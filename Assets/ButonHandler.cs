@@ -88,6 +88,12 @@ public class ButonHandler : MonoBehaviour
         Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
 
+        if (!txtPhraseResult.Contains("_"))
+        {
+            GameHandler.isWinner = true;
+            Debug.Log("Ganaste!!");
+        }
+
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
             GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
             //GameObject PanelGameOver = GameObject.FindGameObjectWithTag("PanelGameOver");
