@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
@@ -32,17 +33,18 @@ public class GameHandler : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         escenaActual = SceneManager.GetActiveScene().name;
         numFailAttemps = 0;
-        numAllowFailAttemps = 3;
+        numAllowFailAttemps = 30;
         GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
         DialogContainer.transform.Find("DialogBoxGameOver").gameObject.SetActive(false);
         const string URL = "https://game2dbackend-alfa.herokuapp.com/phrase";
         
-        Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
-        //txtReturn.text = text;
+        //Text txtPhraseText = transform.Find("PhraseText").GetComponent<Text>();
+        TMP_Text txtPhraseText = GameObject.FindWithTag("txt-phrase2-mesh").GetComponent<TMP_Text>();
+
         StartCoroutine(ProcessRequest(URL, txtPhraseText));
     }
 
-    private IEnumerator ProcessRequest(string uri, Text txtPhraseText)
+    private IEnumerator ProcessRequest(string uri, TMP_Text txtPhraseText)
     {
         string textPhrase = "";
         string textPhraseHide = "";
@@ -64,12 +66,12 @@ public class GameHandler : MonoBehaviour
                 textPhrase = myPhrase.phrase;
                 foreach(char c in textPhrase)
                     {
-                        // Debug.Log(c);
+                        Debug.Log(":"+c+":");
                         if (c != ' '){
-                            textPhraseHide = textPhraseHide + "_ ";
+                            textPhraseHide = textPhraseHide + "_";
                         }
                         else{
-                            textPhraseHide = textPhraseHide + "  ";
+                            textPhraseHide = textPhraseHide + " ";
                         }
                     }
 

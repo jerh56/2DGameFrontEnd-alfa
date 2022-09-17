@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 
 public class ButonHandler : MonoBehaviour
@@ -27,7 +28,9 @@ public class ButonHandler : MonoBehaviour
         fuente = GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>();
         Debug.Log("El Botón "  + this.name + " ha sido presionado");
         Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
+        //Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
+        TMP_Text txtPhraseText = GameObject.FindWithTag("txt-phrase2-mesh").GetComponent<TMP_Text>();
+
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
         Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
         Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
@@ -41,11 +44,9 @@ public class ButonHandler : MonoBehaviour
         int attempts = -1;
         int.TryParse(txtAttempts.text, out attempts);
         attempts++;
-        //Debug.Log(attempts);
-        //Debug.Log(ButtonName);
+        
         txtAttempts.text = attempts.ToString();
         char ButtonNameChar = ButtonName[0];
-        //ButtonName = ButtonName.
 
         string PhraseText = txtPhraseTextHide.text;
         string PhraseTextResult = txtPhraseText.text;
@@ -58,7 +59,6 @@ public class ButonHandler : MonoBehaviour
             else{
               
                 if (PhraseTextResult[i] != '_'){
-                    //PhraseTextResult[i] = PhraseText[i];
                     txtPhraseResult += PhraseTextResult[i];
                 }
                 else{
@@ -79,8 +79,7 @@ public class ButonHandler : MonoBehaviour
 
         if (!txtPhraseResult.Contains("_"))
         {
-            GameHandler.isWinner = true;
-            Debug.Log("Ganaste!!");
+            GameHandler.isWinner = true; //Ganador
         }
 
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {

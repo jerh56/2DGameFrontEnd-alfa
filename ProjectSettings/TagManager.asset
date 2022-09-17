@@ -12,6 +12,7 @@ TagManager:
   - Canvas
   - DialogBoxGameOver
   - PanelGameOver
+  - txt-phrase2-mesh
   layers:
   - Default
   - TransparentFX
