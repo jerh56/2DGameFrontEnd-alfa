@@ -13,6 +13,7 @@ TagManager:
   - DialogBoxGameOver
   - PanelGameOver
   - txt-phrase2-mesh
+  - txt-phrase-prueba
   layers:
   - Default
   - TransparentFX
