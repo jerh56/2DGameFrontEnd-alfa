@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using TMPro;
 
 
 public class ButonHandler : MonoBehaviour
@@ -27,7 +28,9 @@ public class ButonHandler : MonoBehaviour
         fuente = GameObject.FindGameObjectWithTag("Canvas").GetComponent<AudioSource>();
         Debug.Log("El Botón "  + this.name + " ha sido presionado");
         Text txtReturn = GameObject.FindWithTag("MsgText").GetComponent<Text>();
-        Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
+        //Text txtPhraseText = GameObject.FindWithTag("PhraseText").GetComponent<Text>();
+        TMP_Text txtPhraseText = GameObject.FindWithTag("txt-phrase2-mesh").GetComponent<TMP_Text>();
+
         Text txtPhraseTextHide = GameObject.FindWithTag("PhraseTextHide").GetComponent<Text>();
         Text txtAttempts = GameObject.FindWithTag("txt-attempts").GetComponent<Text>();
         Text txtFailAttempts = GameObject.FindWithTag("txt-fail-attempts").GetComponent<Text>();
@@ -41,40 +44,27 @@ public class ButonHandler : MonoBehaviour
         int attempts = -1;
         int.TryParse(txtAttempts.text, out attempts);
         attempts++;
-        //Debug.Log(attempts);
-        //Debug.Log(ButtonName);
+        
         txtAttempts.text = attempts.ToString();
         char ButtonNameChar = ButtonName[0];
-        //ButtonName = ButtonName.
 
         string PhraseText = txtPhraseTextHide.text;
         string PhraseTextResult = txtPhraseText.text;
-        //Debug.Log(PhraseText);
-        //Debug.Log(PhraseTextResult);
+        
         for (int i = 0; i < PhraseText.Length; i ++){
-           if (PhraseText[i].Equals(ButtonNameChar)){
-                //Debug.Log(PhraseText[i]);
+            if (PhraseText[i].Equals(ButtonNameChar)){
                 txtPhraseResult += PhraseText[i];
-                //PhraseTextResult[i] = PhraseText[i];
                 optFoundIt = true;
-           }
-           else{
-              //Debug.Log(PhraseText[i]);
-               // Debug.Log("_");
-               if (PhraseTextResult[i] != '_'){
-                    //PhraseTextResult[i] = PhraseText[i];
+            }
+            else{
+              
+                if (PhraseTextResult[i] != '_'){
                     txtPhraseResult += PhraseTextResult[i];
-               }
-               else{
-                    txtPhraseResult += "_";
-               }
-                /*if (PhraseText[i] != ' '){
-                    txtPhraseResult += "_";
-                    PhraseTextResult[i] = PhraseText[i];
                 }
                 else{
-                    txtPhraseResult += " ";
-                }*/
+                    txtPhraseResult += "_";
+                }
+                
 
            }
         }
@@ -82,11 +72,15 @@ public class ButonHandler : MonoBehaviour
         if (optFoundIt == false) {
             GameHandler.numFailAttemps++;
         }
-        //Debug.Log(PhraseTextResult);
+        
         txtPhraseText.text = txtPhraseResult;
 
-        Debug.Log("Intentos fallidos : " + GameHandler.numFailAttemps.ToString());
         txtFailAttempts.text = GameHandler.numFailAttemps.ToString();
+
+        if (!txtPhraseResult.Contains("_"))
+        {
+            GameHandler.isWinner = true; //Ganador
+        }
 
         if (!(GameHandler.numFailAttemps < GameHandler.numAllowFailAttemps)) {
             GameObject DialogContainer = GameObject.FindGameObjectWithTag("Canvas");
@@ -103,7 +97,6 @@ public class ButonHandler : MonoBehaviour
         string textPhraseHide = "";
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
-            //request.SetRequestHeader("Authorization", "Token 07d1107de8e2977b035f6723da8a5240d25bf15a");
             yield return request.SendWebRequest();
             Debug.Log(request.result);
             if (request.result ==  UnityWebRequest.Result.ConnectionError)
